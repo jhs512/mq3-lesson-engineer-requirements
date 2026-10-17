@@ -1,0 +1,875 @@
+{
+  "schema_version": 1,
+  "id": "engineer-requirements",
+  "revision": "v1.0.0",
+  "title": "현행 시스템과 요구사항",
+  "description": "요구를 기능과 비기능으로 나누고 숫자 기준과 추적표로 검증 누락을 찾아요. 상태 모델을 실행해 보고, UML과 개발 방법론 용어는 필답으로 익혀요. 필수 문제 8개와 선택 도전 2개예요.",
+  "sources": [
+    "https://www.q-net.or.kr/pageLink.do?link=cst/cstReport&jmCd=1320&mcrtrNo=991",
+    "https://www.q-net.or.kr/pageLink.do?link=cst/cstReport&jmCd=1320&mcrtrNo=1453",
+    "https://www.computer.org/education/bodies-of-knowledge/software-engineering",
+    "https://standards.ieee.org/ieee/1028/4402/",
+    "https://www.omg.org/spec/UML/2.5.1",
+    "https://scrumguides.org/scrum-guide.html"
+  ],
+  "sections": [],
+  "review_enabled": false,
+  "tasks": [
+    {
+      "id": "kind-label",
+      "title": "기능일까요, 비기능일까요?",
+      "goal": "기능 요구사항은 시스템이 무엇을 하는지 적어요. 회원 가입, 주문 조회가 그 예예요.\n비기능 요구사항은 얼마나 잘 하는지와 지켜야 할 제약을 적어요.\n성능·가용성·보안·사용성 같은 품질이 여기에 들어가요.\n\n실행해서 분석가가 기능으로 나눈 요구를 읽어 보세요.\n그중 하나는 사실 비기능 요구예요. 그 줄의 라벨만 고치세요.\n다시 실행해서 목록과 개수를 비교하세요.",
+      "language": "python",
+      "entry_file": "main.py",
+      "starter_code": "# 쇼핑몰 고객에게 받은 요구와 분석가가 붙인 종류예요.\nreqs = {\n    '회원은 주문 내역을 조회할 수 있어야 해요': '기능',\n    '검색 결과는 2초 안에 화면에 나와야 해요': '기능',\n    '관리자는 새 상품을 등록할 수 있어야 해요': '기능',\n    '서비스는 한 달에 99.9% 이상 동작해야 해요': '비기능',\n    '주문이 끝나면 확인 메일을 보내야 해요': '기능',\n    '처음 쓰는 사람도 10분 안에 주문을 익혀야 해요': '비기능',\n}\n# 자세히 볼 종류예요.\npick = '기능'\n\n# 고른 종류의 요구만 출력하고 개수를 세요.\ncount = 0\n# items()는 키와 값을 한 쌍씩 꺼내요. text에 요구, kind에 종류가 들어가요.\nfor text, kind in reqs.items():\n    if kind == pick:\n        print(f'[{kind}] {text}')\n        # 출력한 요구를 하나 세요.\n        count += 1\n# 몇 개를 골랐는지 전체 개수와 함께 보여 줘요.\nprint(f'{pick} {count}개 / 전체 {len(reqs)}개')\n",
+      "solution": "# 쇼핑몰 고객에게 받은 요구와 분석가가 붙인 종류예요.\nreqs = {\n    '회원은 주문 내역을 조회할 수 있어야 해요': '기능',\n    '검색 결과는 2초 안에 화면에 나와야 해요': '비기능',\n    '관리자는 새 상품을 등록할 수 있어야 해요': '기능',\n    '서비스는 한 달에 99.9% 이상 동작해야 해요': '비기능',\n    '주문이 끝나면 확인 메일을 보내야 해요': '기능',\n    '처음 쓰는 사람도 10분 안에 주문을 익혀야 해요': '비기능',\n}\n# 자세히 볼 종류예요.\npick = '기능'\n\n# 고른 종류의 요구만 출력하고 개수를 세요.\ncount = 0\n# items()는 키와 값을 한 쌍씩 꺼내요. text에 요구, kind에 종류가 들어가요.\nfor text, kind in reqs.items():\n    if kind == pick:\n        print(f'[{kind}] {text}')\n        # 출력한 요구를 하나 세요.\n        count += 1\n# 몇 개를 골랐는지 전체 개수와 함께 보여 줘요.\nprint(f'{pick} {count}개 / 전체 {len(reqs)}개')\n",
+      "files": {},
+      "tests": [
+        {
+          "input": "",
+          "expected": "[기능] 회원은 주문 내역을 조회할 수 있어야 해요\n[기능] 관리자는 새 상품을 등록할 수 있어야 해요\n[기능] 주문이 끝나면 확인 메일을 보내야 해요\n기능 3개 / 전체 6개"
+        }
+      ],
+      "web_checks": [],
+      "git_checks": null,
+      "required": true,
+      "hints": [
+        "\"얼마나 빨리\"처럼 품질을 숫자로 정하면 비기능이에요."
+      ],
+      "narration": [
+        {
+          "action": "set_code",
+          "code": "# 쇼핑몰 고객에게 받은 요구와 분석가가 붙인 종류예요.\nreqs = {\n    '회원은 주문 내역을 조회할 수 있어야 해요': '기능',\n    '검색 결과는 2초 안에 화면에 나와야 해요': '기능',\n    '관리자는 새 상품을 등록할 수 있어야 해요': '기능',\n    '서비스는 한 달에 99.9% 이상 동작해야 해요': '비기능',\n    '주문이 끝나면 확인 메일을 보내야 해요': '기능',\n    '처음 쓰는 사람도 10분 안에 주문을 익혀야 해요': '비기능',\n}\n# 자세히 볼 종류예요.\npick = '기능'\n\n# 고른 종류의 요구만 출력하고 개수를 세요.\ncount = 0\n# items()는 키와 값을 한 쌍씩 꺼내요. text에 요구, kind에 종류가 들어가요.\nfor text, kind in reqs.items():\n    if kind == pick:\n        print(f'[{kind}] {text}')\n        # 출력한 요구를 하나 세요.\n        count += 1\n# 몇 개를 골랐는지 전체 개수와 함께 보여 줘요.\nprint(f'{pick} {count}개 / 전체 {len(reqs)}개')\n",
+          "say": "준비 코드를 먼저 실행해 볼게요."
+        },
+        {
+          "action": "run",
+          "expected_failure": false
+        },
+        {
+          "action": "say",
+          "target": "output",
+          "text": "실행 결과를 비교해요. 나면 확인 메일을 보내야 해요 / 기능 4개 / 전체 6개"
+        },
+        {
+          "action": "say",
+          "target": "editor",
+          "text": "조심하세요. 검색이라는 기능 이름만 보고 기능으로 두면 성능 요구를 놓쳐요."
+        },
+        {
+          "action": "patch_code",
+          "before": "'검색 결과는 2초 안에 화면에 나와야 해요': '기능',",
+          "after": "'검색 결과는 2초 안에 화면에 나와야 해요': '비기능',",
+          "say": "작은 부분을 바꿔 원리를 확인해요."
+        },
+        {
+          "action": "run"
+        },
+        {
+          "action": "say",
+          "target": "output",
+          "text": "실행 결과를 비교해요. 나면 확인 메일을 보내야 해요 / 기능 3개 / 전체 6개"
+        },
+        {
+          "action": "submit"
+        }
+      ],
+      "checker": "import ast\nimport builtins\nimport contextlib\nimport io\nimport math\nimport os\nfrom pathlib import Path\nimport shutil\nimport sys\nimport tempfile\nimport traceback\nimport warnings\n\nos.environ['MPLBACKEND'] = 'Agg'\n# Grading output is for the verdict only; font and library warnings would bury the reason.\nwarnings.filterwarnings('ignore')\nbuiltins.display = lambda *args, **kwargs: None\nreference = \"# 쇼핑몰 고객에게 받은 요구와 분석가가 붙인 종류예요.\\nreqs = {\\n    '회원은 주문 내역을 조회할 수 있어야 해요': '기능',\\n    '검색 결과는 2초 안에 화면에 나와야 해요': '비기능',\\n    '관리자는 새 상품을 등록할 수 있어야 해요': '기능',\\n    '서비스는 한 달에 99.9% 이상 동작해야 해요': '비기능',\\n    '주문이 끝나면 확인 메일을 보내야 해요': '기능',\\n    '처음 쓰는 사람도 10분 안에 주문을 익혀야 해요': '비기능',\\n}\\n# 자세히 볼 종류예요.\\npick = '기능'\\n\\n# 고른 종류의 요구만 출력하고 개수를 세요.\\ncount = 0\\n# items()는 키와 값을 한 쌍씩 꺼내요. text에 요구, kind에 종류가 들어가요.\\nfor text, kind in reqs.items():\\n    if kind == pick:\\n        print(f'[{kind}] {text}')\\n        # 출력한 요구를 하나 세요.\\n        count += 1\\n# 몇 개를 골랐는지 전체 개수와 함께 보여 줘요.\\nprint(f'{pick} {count}개 / 전체 {len(reqs)}개')\\n\"\ncases = [{}, {'pick': '비기능'}, {'reqs': {'회원은 책을 예약할 수 있어야 해요': '기능', '동시 접속자 500명까지 3초 안에 응답해야 해요': '비기능', '사서는 연체 회원 목록을 볼 수 있어야 해요': '기능'}}]\nnames = []\nbase_files = {}\nsource = open(sys.argv[1], encoding='utf8').read()\n\n\nclass Inputs(ast.NodeTransformer):\n    # Replace only the first prepared assignment to each changed name.\n    def __init__(self, values):\n        self.values = values\n        self.seen = set()\n\n    def visit_Assign(self, node):\n        if len(node.targets) == 1 and isinstance(node.targets[0], ast.Name):\n            name = node.targets[0].id\n            if name in self.values and name not in self.seen:\n                self.seen.add(name)\n                node.value = ast.parse(repr(self.values[name]), mode='eval').body\n        return node\n\n\ndef execute(text, values):\n    tree = ast.fix_missing_locations(Inputs(values).visit(ast.parse(text)))\n    scope = {'__name__': '__main__'}\n    output = io.StringIO()\n    with contextlib.redirect_stdout(output):\n        exec(compile(tree, 'main.py', 'exec'), scope)\n    plt = sys.modules.get('matplotlib.pyplot')\n    if plt is not None:\n        plt.close('all')\n    return output.getvalue().rstrip('\\n'), scope\n\n\ndef same(actual, expected):\n    pd = sys.modules.get('pandas')\n    if pd is not None and isinstance(expected, (pd.DataFrame, pd.Series, pd.Index)):\n        if type(actual) is not type(expected):\n            return False\n        try:\n            if isinstance(expected, pd.DataFrame):\n                pd.testing.assert_frame_equal(actual, expected)\n            elif isinstance(expected, pd.Series):\n                pd.testing.assert_series_equal(actual, expected)\n            else:\n                pd.testing.assert_index_equal(actual, expected)\n            return True\n        except AssertionError:\n            return False\n    np = sys.modules.get('numpy')\n    if np is not None and isinstance(expected, np.ndarray):\n        # Model and scaler outputs: same shape, and values equal up to float rounding.\n        if not isinstance(actual, np.ndarray) or actual.shape != expected.shape:\n            return False\n        if expected.dtype.kind in 'fc':\n            return bool(np.allclose(actual, expected, rtol=1e-7, atol=1e-9, equal_nan=True))\n        return bool(np.array_equal(actual, expected))\n    if isinstance(expected, float) and isinstance(actual, (int, float)):\n        return math.isclose(actual, expected, rel_tol=1e-9, abs_tol=1e-12)\n    try:\n        return bool(actual == expected)\n    except Exception:\n        return False\n\n\ndef fail(message):\n    # The learner reads only this message, never the checker's own traceback.\n    print(message, file=sys.stderr)\n    sys.exit(1)\n\n\ndef snapshot(inputs):\n    # Files the run created or changed, such as a saved result CSV.\n    produced = {}\n    for path in Path('.').rglob('*'):\n        if path.is_file() and inputs.get(path.as_posix()) != path.read_bytes():\n            produced[path.as_posix()] = path.read_bytes()\n    return produced\n\n\ndef run_in_fresh_folder(files, text, values):\n    # Each run gets its own copy of the data, so files one run writes never help another.\n    home = os.getcwd()\n    folder = tempfile.mkdtemp(dir=home)\n    try:\n        os.chdir(folder)\n        inputs = {}\n        for path, content in files.items():\n            target = Path(path)\n            target.parent.mkdir(parents=True, exist_ok=True)\n            target.write_text(content, encoding='utf8')\n            inputs[target.as_posix()] = target.read_bytes()\n        output, scope = execute(text, values)\n        return output, scope, snapshot(inputs)\n    finally:\n        os.chdir(home)\n        shutil.rmtree(folder, ignore_errors=True)\n\n\ndef describe(case):\n    parts = [name + ' = ' + repr(value) for name, value in case.items() if name != 'files']\n    parts += [path + ' 내용' for path in case.get('files', {})]\n    return ', '.join(parts)\n\n\nMESSAGES = {'__figures__': '그래프의 종류·축 이름·값이 기준 그래프와 달라요. 바뀐 자료로도 같은 그래프를 그리세요.'}\nfor index, case in enumerate(cases):\n    values = {k: v for k, v in case.items() if k != 'files'}\n    files = {**base_files, **case.get('files', {})}\n    expected, wanted, made = run_in_fresh_folder(files, reference, values)\n    changed = '준비 값을 ' + describe(case) + '(으)로 바꾸면 '\n    try:\n        actual, scope, produced = run_in_fresh_folder(files, source, values)\n    except SystemExit:\n        fail('코드가 exit로 중간에 끝났어요. 끝까지 실행되게 하세요.')\n    except BaseException as error:\n        reason = ''.join(traceback.format_exception_only(type(error), error)).strip()\n        fail(('코드를 실행하면' if index == 0 else changed.rstrip()) + ' 오류가 나요.\\n' + reason)\n    if index == 0:\n        problem = '실행 결과가 기대와 달라요.'\n    else:\n        problem = changed + '결과가 달라요.\\n값이나 자료가 바뀌어도 맞는 방법인지 확인하세요.'\n    if actual != expected:\n        fail(problem + '\\n기대 출력:\\n' + expected[-600:] + '\\n실제 출력:\\n' + actual[-600:])\n    for name in names:\n        if name not in scope:\n            fail(name + '에 결과를 담아 주세요.')\n        if not same(scope[name], wanted[name]):\n            fail(problem + '\\n' + MESSAGES.get(name, name + '의 값이 기대와 달라요.'))\n    for path in sorted(made):\n        if path not in produced:\n            fail(problem + '\\n' + path + ' 파일을 저장하지 않았어요.')\n        if produced[path] != made[path]:\n            fail(problem + '\\n저장한 ' + path + ' 파일의 내용이 기대와 달라요.')\nprint('준비 값과 자료를 바꿔도 같은 원리로 계산했어요.')\n"
+    },
+    {
+      "id": "uptime-check",
+      "title": "99.9%를 지킬 수 있을까요?",
+      "goal": "현행 시스템 분석은 지금 플랫폼을 살펴요. 운영체제·DBMS·네트워크와 성능이 대상이죠.\nDBMS는 데이터베이스를 관리하는 프로그램이에요. 목표 요구를 지금 플랫폼이 지킬지 따지는 건 기술 타당성 검토고요. 이 실험이 그 검토예요.\n가용성은 전체 시간 중 서비스가 동작한 시간의 비율이에요.\n\n실행해서 가용성 숫자가 말이 되는지 보세요.\n동작한 시간은 전체 시간에서 멈춘 시간을 뺀 값이에요.\n그 값을 전체 시간으로 나누게 `rate` 줄만 고치세요.\n다시 실행해서 판정이 어떻게 바뀌는지 비교하세요.",
+      "language": "python",
+      "entry_file": "main.py",
+      "starter_code": "# 현행 시스템의 지난 30일 장애 기록이에요(분).\noutages = [12, 9, 6]\n# 목표 시스템의 가용성 요구예요(%). 숫자라서 검증할 수 있어요.\ntarget = 99.9\n\n# 30일을 분으로 바꾼 전체 시간이에요.\ntotal = 30 * 24 * 60\n# sum은 목록의 값을 모두 더해요. 멈춘 시간의 합이에요.\ndown = sum(outages)\n# 가용성을 백분율로 계산해요.\nrate = down / total * 100\n# :.2f는 소수 둘째 자리까지만 보여 줘요.\nprint(f'멈춘 시간 {down}분, 가용성 {rate:.2f}%')\n# 숫자 기준과 비교해서 바로 판정해요.\nif rate >= target:\n    print('요구 만족: 지금 플랫폼으로 가능해요')\nelse:\n    print('요구 미달: 플랫폼 보강이 필요해요')\n",
+      "solution": "# 현행 시스템의 지난 30일 장애 기록이에요(분).\noutages = [12, 9, 6]\n# 목표 시스템의 가용성 요구예요(%). 숫자라서 검증할 수 있어요.\ntarget = 99.9\n\n# 30일을 분으로 바꾼 전체 시간이에요.\ntotal = 30 * 24 * 60\n# sum은 목록의 값을 모두 더해요. 멈춘 시간의 합이에요.\ndown = sum(outages)\n# 가용성을 백분율로 계산해요.\nrate = (total - down) / total * 100\n# :.2f는 소수 둘째 자리까지만 보여 줘요.\nprint(f'멈춘 시간 {down}분, 가용성 {rate:.2f}%')\n# 숫자 기준과 비교해서 바로 판정해요.\nif rate >= target:\n    print('요구 만족: 지금 플랫폼으로 가능해요')\nelse:\n    print('요구 미달: 플랫폼 보강이 필요해요')\n",
+      "files": {},
+      "tests": [
+        {
+          "input": "",
+          "expected": "멈춘 시간 27분, 가용성 99.94%\n요구 만족: 지금 플랫폼으로 가능해요"
+        }
+      ],
+      "web_checks": [],
+      "git_checks": null,
+      "required": true,
+      "hints": [
+        "동작한 시간은 `total - down`이에요. 괄호로 먼저 빼요."
+      ],
+      "narration": [
+        {
+          "action": "set_code",
+          "code": "# 현행 시스템의 지난 30일 장애 기록이에요(분).\noutages = [12, 9, 6]\n# 목표 시스템의 가용성 요구예요(%). 숫자라서 검증할 수 있어요.\ntarget = 99.9\n\n# 30일을 분으로 바꾼 전체 시간이에요.\ntotal = 30 * 24 * 60\n# sum은 목록의 값을 모두 더해요. 멈춘 시간의 합이에요.\ndown = sum(outages)\n# 가용성을 백분율로 계산해요.\nrate = down / total * 100\n# :.2f는 소수 둘째 자리까지만 보여 줘요.\nprint(f'멈춘 시간 {down}분, 가용성 {rate:.2f}%')\n# 숫자 기준과 비교해서 바로 판정해요.\nif rate >= target:\n    print('요구 만족: 지금 플랫폼으로 가능해요')\nelse:\n    print('요구 미달: 플랫폼 보강이 필요해요')\n",
+          "say": "준비 코드를 먼저 실행해 볼게요."
+        },
+        {
+          "action": "run",
+          "expected_failure": false
+        },
+        {
+          "action": "say",
+          "target": "output",
+          "text": "실행 결과를 비교해요.  가용성 0.06% / 요구 미달: 플랫폼 보강이 필요해요"
+        },
+        {
+          "action": "say",
+          "target": "editor",
+          "text": "조심하세요. 멈춘 시간을 전체로 나누면 가용성이 아니라 멈춘 비율이 나와요."
+        },
+        {
+          "action": "patch_code",
+          "before": "rate = down / total * 100",
+          "after": "rate = (total - down) / total * 100",
+          "say": "작은 부분을 바꿔 원리를 확인해요."
+        },
+        {
+          "action": "run"
+        },
+        {
+          "action": "say",
+          "target": "output",
+          "text": "실행 결과를 비교해요. 용성 99.94% / 요구 만족: 지금 플랫폼으로 가능해요"
+        },
+        {
+          "action": "submit"
+        }
+      ],
+      "checker": "import ast\nimport builtins\nimport contextlib\nimport io\nimport math\nimport os\nfrom pathlib import Path\nimport shutil\nimport sys\nimport tempfile\nimport traceback\nimport warnings\n\nos.environ['MPLBACKEND'] = 'Agg'\n# Grading output is for the verdict only; font and library warnings would bury the reason.\nwarnings.filterwarnings('ignore')\nbuiltins.display = lambda *args, **kwargs: None\nreference = \"# 현행 시스템의 지난 30일 장애 기록이에요(분).\\noutages = [12, 9, 6]\\n# 목표 시스템의 가용성 요구예요(%). 숫자라서 검증할 수 있어요.\\ntarget = 99.9\\n\\n# 30일을 분으로 바꾼 전체 시간이에요.\\ntotal = 30 * 24 * 60\\n# sum은 목록의 값을 모두 더해요. 멈춘 시간의 합이에요.\\ndown = sum(outages)\\n# 가용성을 백분율로 계산해요.\\nrate = (total - down) / total * 100\\n# :.2f는 소수 둘째 자리까지만 보여 줘요.\\nprint(f'멈춘 시간 {down}분, 가용성 {rate:.2f}%')\\n# 숫자 기준과 비교해서 바로 판정해요.\\nif rate >= target:\\n    print('요구 만족: 지금 플랫폼으로 가능해요')\\nelse:\\n    print('요구 미달: 플랫폼 보강이 필요해요')\\n\"\ncases = [{}, {'outages': [30, 20]}, {'outages': []}, {'outages': [5, 5], 'target': 99.99}]\nnames = []\nbase_files = {}\nsource = open(sys.argv[1], encoding='utf8').read()\n\n\nclass Inputs(ast.NodeTransformer):\n    # Replace only the first prepared assignment to each changed name.\n    def __init__(self, values):\n        self.values = values\n        self.seen = set()\n\n    def visit_Assign(self, node):\n        if len(node.targets) == 1 and isinstance(node.targets[0], ast.Name):\n            name = node.targets[0].id\n            if name in self.values and name not in self.seen:\n                self.seen.add(name)\n                node.value = ast.parse(repr(self.values[name]), mode='eval').body\n        return node\n\n\ndef execute(text, values):\n    tree = ast.fix_missing_locations(Inputs(values).visit(ast.parse(text)))\n    scope = {'__name__': '__main__'}\n    output = io.StringIO()\n    with contextlib.redirect_stdout(output):\n        exec(compile(tree, 'main.py', 'exec'), scope)\n    plt = sys.modules.get('matplotlib.pyplot')\n    if plt is not None:\n        plt.close('all')\n    return output.getvalue().rstrip('\\n'), scope\n\n\ndef same(actual, expected):\n    pd = sys.modules.get('pandas')\n    if pd is not None and isinstance(expected, (pd.DataFrame, pd.Series, pd.Index)):\n        if type(actual) is not type(expected):\n            return False\n        try:\n            if isinstance(expected, pd.DataFrame):\n                pd.testing.assert_frame_equal(actual, expected)\n            elif isinstance(expected, pd.Series):\n                pd.testing.assert_series_equal(actual, expected)\n            else:\n                pd.testing.assert_index_equal(actual, expected)\n            return True\n        except AssertionError:\n            return False\n    np = sys.modules.get('numpy')\n    if np is not None and isinstance(expected, np.ndarray):\n        # Model and scaler outputs: same shape, and values equal up to float rounding.\n        if not isinstance(actual, np.ndarray) or actual.shape != expected.shape:\n            return False\n        if expected.dtype.kind in 'fc':\n            return bool(np.allclose(actual, expected, rtol=1e-7, atol=1e-9, equal_nan=True))\n        return bool(np.array_equal(actual, expected))\n    if isinstance(expected, float) and isinstance(actual, (int, float)):\n        return math.isclose(actual, expected, rel_tol=1e-9, abs_tol=1e-12)\n    try:\n        return bool(actual == expected)\n    except Exception:\n        return False\n\n\ndef fail(message):\n    # The learner reads only this message, never the checker's own traceback.\n    print(message, file=sys.stderr)\n    sys.exit(1)\n\n\ndef snapshot(inputs):\n    # Files the run created or changed, such as a saved result CSV.\n    produced = {}\n    for path in Path('.').rglob('*'):\n        if path.is_file() and inputs.get(path.as_posix()) != path.read_bytes():\n            produced[path.as_posix()] = path.read_bytes()\n    return produced\n\n\ndef run_in_fresh_folder(files, text, values):\n    # Each run gets its own copy of the data, so files one run writes never help another.\n    home = os.getcwd()\n    folder = tempfile.mkdtemp(dir=home)\n    try:\n        os.chdir(folder)\n        inputs = {}\n        for path, content in files.items():\n            target = Path(path)\n            target.parent.mkdir(parents=True, exist_ok=True)\n            target.write_text(content, encoding='utf8')\n            inputs[target.as_posix()] = target.read_bytes()\n        output, scope = execute(text, values)\n        return output, scope, snapshot(inputs)\n    finally:\n        os.chdir(home)\n        shutil.rmtree(folder, ignore_errors=True)\n\n\ndef describe(case):\n    parts = [name + ' = ' + repr(value) for name, value in case.items() if name != 'files']\n    parts += [path + ' 내용' for path in case.get('files', {})]\n    return ', '.join(parts)\n\n\nMESSAGES = {'__figures__': '그래프의 종류·축 이름·값이 기준 그래프와 달라요. 바뀐 자료로도 같은 그래프를 그리세요.'}\nfor index, case in enumerate(cases):\n    values = {k: v for k, v in case.items() if k != 'files'}\n    files = {**base_files, **case.get('files', {})}\n    expected, wanted, made = run_in_fresh_folder(files, reference, values)\n    changed = '준비 값을 ' + describe(case) + '(으)로 바꾸면 '\n    try:\n        actual, scope, produced = run_in_fresh_folder(files, source, values)\n    except SystemExit:\n        fail('코드가 exit로 중간에 끝났어요. 끝까지 실행되게 하세요.')\n    except BaseException as error:\n        reason = ''.join(traceback.format_exception_only(type(error), error)).strip()\n        fail(('코드를 실행하면' if index == 0 else changed.rstrip()) + ' 오류가 나요.\\n' + reason)\n    if index == 0:\n        problem = '실행 결과가 기대와 달라요.'\n    else:\n        problem = changed + '결과가 달라요.\\n값이나 자료가 바뀌어도 맞는 방법인지 확인하세요.'\n    if actual != expected:\n        fail(problem + '\\n기대 출력:\\n' + expected[-600:] + '\\n실제 출력:\\n' + actual[-600:])\n    for name in names:\n        if name not in scope:\n            fail(name + '에 결과를 담아 주세요.')\n        if not same(scope[name], wanted[name]):\n            fail(problem + '\\n' + MESSAGES.get(name, name + '의 값이 기대와 달라요.'))\n    for path in sorted(made):\n        if path not in produced:\n            fail(problem + '\\n' + path + ' 파일을 저장하지 않았어요.')\n        if produced[path] != made[path]:\n            fail(problem + '\\n저장한 ' + path + ' 파일의 내용이 기대와 달라요.')\nprint('준비 값과 자료를 바꿔도 같은 원리로 계산했어요.')\n"
+    },
+    {
+      "id": "re-steps",
+      "title": "요구공학은 어떤 순서일까요?",
+      "goal": "요구공학은 요구를 모으고 다듬는 일의 순서예요.\n\n| 단계 | 하는 일 |\n|---|---|\n| 도출(Elicitation) | 인터뷰·설문·관찰로 요구를 모아요 |\n| 분석(Analysis) | 겹치거나 부딪치는 요구를 정리해요 |\n| 명세(Specification) | 정리한 요구를 문서로 적어요 |\n| 검증·확인(Validation) | 적은 요구가 맞고 빠짐없는지 확인해요 |\n\n검증에 쓰는 검토 중 가장 형식적인 것이 인스펙션(Inspection)이에요.\n작성자가 아닌 진행자가 이끌고, 체크리스트로 결함을 찾아 기록해요.\n동료 검토(Peer Review)와 워크스루(Walkthrough)도 있어요. 둘 다 동료들이 함께 읽으며 결함을 찾죠. 다만 인스펙션보다 덜 형식적이에요.\n\n쇼핑몰 팀이 한 일을 섞어 놓았어요.\nㄱ. 완성한 명세서를 고객과 읽으며 빠진 요구를 찾았어요.\nㄴ. 고객을 인터뷰하고 매장 업무를 지켜봤어요.\nㄷ. 서로 부딪치는 요구 두 개의 우선순위를 정했어요.\nㄹ. 정리한 요구에 번호를 붙여 문서로 적었어요.\n\n① 한 일을 요구공학 순서대로 기호로 적으세요. 예: ㄱㄴㄷㄹ\n② 진행자가 이끌고 체크리스트로 결함을 찾는 검토는요?\n편집기의 ?를 지우고 한 줄에 하나씩 답을 적으세요.",
+      "language": "answer",
+      "entry_file": "answer.txt",
+      "starter_code": "① ?\n② ?\n",
+      "solution": "① ㄴㄷㄹㄱ\n② 인스펙션\n",
+      "files": {},
+      "tests": [
+        {
+          "input": "",
+          "expected": "ㄴㄷㄹㄱ\n인스펙션"
+        },
+        {
+          "input": "1",
+          "expected": "ㄴㄷㄹㄱ"
+        },
+        {
+          "input": "1",
+          "expected": "ㄴ, ㄷ, ㄹ, ㄱ"
+        },
+        {
+          "input": "1",
+          "expected": "ㄴ,ㄷ,ㄹ,ㄱ"
+        },
+        {
+          "input": "1",
+          "expected": "ㄴ → ㄷ → ㄹ → ㄱ"
+        },
+        {
+          "input": "1",
+          "expected": "ㄴ→ㄷ→ㄹ→ㄱ"
+        },
+        {
+          "input": "1",
+          "expected": "ㄴ -> ㄷ -> ㄹ -> ㄱ"
+        },
+        {
+          "input": "1",
+          "expected": "ㄴ->ㄷ->ㄹ->ㄱ"
+        },
+        {
+          "input": "1",
+          "expected": "ㄴ - ㄷ - ㄹ - ㄱ"
+        },
+        {
+          "input": "1",
+          "expected": "ㄴ-ㄷ-ㄹ-ㄱ"
+        },
+        {
+          "input": "1",
+          "expected": "ㄴ > ㄷ > ㄹ > ㄱ"
+        },
+        {
+          "input": "1",
+          "expected": "ㄴ>ㄷ>ㄹ>ㄱ"
+        },
+        {
+          "input": "2",
+          "expected": "인스펙션"
+        },
+        {
+          "input": "2",
+          "expected": "inspection"
+        },
+        {
+          "input": "2",
+          "expected": "인스펙션 (inspection)"
+        },
+        {
+          "input": "2",
+          "expected": "인스펙션(inspection)"
+        }
+      ],
+      "web_checks": [],
+      "git_checks": null,
+      "required": true,
+      "hints": [
+        "요구를 모으는 일이 맨 앞, 확인하는 일이 맨 뒤예요."
+      ],
+      "narration": [
+        {
+          "action": "set_code",
+          "code": "① ?\n② ?\n",
+          "say": "준비 코드를 먼저 실행해 볼게요."
+        },
+        {
+          "action": "run",
+          "expected_failure": false
+        },
+        {
+          "action": "say",
+          "target": "output",
+          "text": "실행 결과를 비교해요. ? / ?"
+        },
+        {
+          "action": "say",
+          "target": "editor",
+          "text": "조심하세요. 분석보다 명세를 앞에 두면 부딪치는 요구가 문서에 그대로 남아요."
+        },
+        {
+          "action": "patch_code",
+          "before": "① ?\n② ?",
+          "after": "① ㄴㄷㄹㄱ\n② 인스펙션",
+          "say": "작은 부분을 바꿔 원리를 확인해요."
+        },
+        {
+          "action": "run"
+        },
+        {
+          "action": "say",
+          "target": "output",
+          "text": "실행 결과를 비교해요. ㄴㄷㄹㄱ / 인스펙션"
+        },
+        {
+          "action": "submit"
+        }
+      ]
+    },
+    {
+      "id": "trace-gap",
+      "title": "테스트가 없는 요구를 찾아요",
+      "goal": "요구마다 그 요구를 확인할 테스트가 있어야 검증할 수 있어요.\n요구와 테스트를 잇는 표를 추적표(traceability matrix)라고 해요.\n어느 테스트도 가리키지 않는 요구가 검증 누락이에요.\n\n실행해서 출력과 추적표를 나란히 보세요. 이미 테스트가 있는 요구가 나와요.\n집합에서 `A & B`는 둘 다 있는 값, `A - B`는 A에만 있는 값이에요.\n검증 누락이 나오게 `missing` 줄의 기호 하나만 고치세요.",
+      "language": "python",
+      "entry_file": "main.py",
+      "starter_code": "# 명세서에 적은 요구 번호예요.\nreqs = ['REQ-1', 'REQ-2', 'REQ-3', 'REQ-4', 'REQ-5']\n# 추적표예요. 테스트마다 확인하는 요구를 적어요.\ntrace = {\n    'TC-01': 'REQ-1',\n    'TC-02': 'REQ-3',\n    'TC-03': 'REQ-3',\n    'TC-04': 'REQ-5',\n}\n\n# values()는 딕셔너리의 값만 꺼내요. 테스트가 가리키는 요구들이죠.\n# set으로 모으면 같은 요구는 한 번만 남아요.\ncovered = set(trace.values())\n# 아무 테스트도 없는 요구를 골라 차례로 정렬해요.\nmissing = sorted(set(reqs) & covered)\nprint('검증 누락:', missing)\n# 전체에서 누락을 빼면 테스트가 있는 요구 수예요.\nprint(f'테스트 있는 요구 {len(reqs) - len(missing)}개 / 전체 {len(reqs)}개')\n",
+      "solution": "# 명세서에 적은 요구 번호예요.\nreqs = ['REQ-1', 'REQ-2', 'REQ-3', 'REQ-4', 'REQ-5']\n# 추적표예요. 테스트마다 확인하는 요구를 적어요.\ntrace = {\n    'TC-01': 'REQ-1',\n    'TC-02': 'REQ-3',\n    'TC-03': 'REQ-3',\n    'TC-04': 'REQ-5',\n}\n\n# values()는 딕셔너리의 값만 꺼내요. 테스트가 가리키는 요구들이죠.\n# set으로 모으면 같은 요구는 한 번만 남아요.\ncovered = set(trace.values())\n# 아무 테스트도 없는 요구를 골라 차례로 정렬해요.\nmissing = sorted(set(reqs) - covered)\nprint('검증 누락:', missing)\n# 전체에서 누락을 빼면 테스트가 있는 요구 수예요.\nprint(f'테스트 있는 요구 {len(reqs) - len(missing)}개 / 전체 {len(reqs)}개')\n",
+      "files": {},
+      "tests": [
+        {
+          "input": "",
+          "expected": "검증 누락: ['REQ-2', 'REQ-4']\n테스트 있는 요구 3개 / 전체 5개"
+        }
+      ],
+      "web_checks": [],
+      "git_checks": null,
+      "required": true,
+      "hints": [
+        "요구 전체에서 테스트가 있는 요구를 빼요."
+      ],
+      "narration": [
+        {
+          "action": "set_code",
+          "code": "# 명세서에 적은 요구 번호예요.\nreqs = ['REQ-1', 'REQ-2', 'REQ-3', 'REQ-4', 'REQ-5']\n# 추적표예요. 테스트마다 확인하는 요구를 적어요.\ntrace = {\n    'TC-01': 'REQ-1',\n    'TC-02': 'REQ-3',\n    'TC-03': 'REQ-3',\n    'TC-04': 'REQ-5',\n}\n\n# values()는 딕셔너리의 값만 꺼내요. 테스트가 가리키는 요구들이죠.\n# set으로 모으면 같은 요구는 한 번만 남아요.\ncovered = set(trace.values())\n# 아무 테스트도 없는 요구를 골라 차례로 정렬해요.\nmissing = sorted(set(reqs) & covered)\nprint('검증 누락:', missing)\n# 전체에서 누락을 빼면 테스트가 있는 요구 수예요.\nprint(f'테스트 있는 요구 {len(reqs) - len(missing)}개 / 전체 {len(reqs)}개')\n",
+          "say": "준비 코드를 먼저 실행해 볼게요."
+        },
+        {
+          "action": "run",
+          "expected_failure": false
+        },
+        {
+          "action": "say",
+          "target": "output",
+          "text": "실행 결과를 비교해요.  'REQ-5'] / 테스트 있는 요구 2개 / 전체 5개"
+        },
+        {
+          "action": "say",
+          "target": "editor",
+          "text": "조심하세요. `&`로 두면 누락이 아니라 이미 테스트한 요구가 나와요."
+        },
+        {
+          "action": "patch_code",
+          "before": "sorted(set(reqs) & covered)",
+          "after": "sorted(set(reqs) - covered)",
+          "say": "작은 부분을 바꿔 원리를 확인해요."
+        },
+        {
+          "action": "run"
+        },
+        {
+          "action": "say",
+          "target": "output",
+          "text": "실행 결과를 비교해요.  'REQ-4'] / 테스트 있는 요구 3개 / 전체 5개"
+        },
+        {
+          "action": "submit"
+        }
+      ],
+      "checker": "import ast\nimport builtins\nimport contextlib\nimport io\nimport math\nimport os\nfrom pathlib import Path\nimport shutil\nimport sys\nimport tempfile\nimport traceback\nimport warnings\n\nos.environ['MPLBACKEND'] = 'Agg'\n# Grading output is for the verdict only; font and library warnings would bury the reason.\nwarnings.filterwarnings('ignore')\nbuiltins.display = lambda *args, **kwargs: None\nreference = \"# 명세서에 적은 요구 번호예요.\\nreqs = ['REQ-1', 'REQ-2', 'REQ-3', 'REQ-4', 'REQ-5']\\n# 추적표예요. 테스트마다 확인하는 요구를 적어요.\\ntrace = {\\n    'TC-01': 'REQ-1',\\n    'TC-02': 'REQ-3',\\n    'TC-03': 'REQ-3',\\n    'TC-04': 'REQ-5',\\n}\\n\\n# values()는 딕셔너리의 값만 꺼내요. 테스트가 가리키는 요구들이죠.\\n# set으로 모으면 같은 요구는 한 번만 남아요.\\ncovered = set(trace.values())\\n# 아무 테스트도 없는 요구를 골라 차례로 정렬해요.\\nmissing = sorted(set(reqs) - covered)\\nprint('검증 누락:', missing)\\n# 전체에서 누락을 빼면 테스트가 있는 요구 수예요.\\nprint(f'테스트 있는 요구 {len(reqs) - len(missing)}개 / 전체 {len(reqs)}개')\\n\"\ncases = [{}, {'trace': {'TC-01': 'REQ-2', 'TC-02': 'REQ-2', 'TC-03': 'REQ-4'}}, {'reqs': ['REQ-1', 'REQ-2', 'REQ-3'], 'trace': {'TC-01': 'REQ-1', 'TC-02': 'REQ-2', 'TC-03': 'REQ-3', 'TC-04': 'REQ-9'}}]\nnames = []\nbase_files = {}\nsource = open(sys.argv[1], encoding='utf8').read()\n\n\nclass Inputs(ast.NodeTransformer):\n    # Replace only the first prepared assignment to each changed name.\n    def __init__(self, values):\n        self.values = values\n        self.seen = set()\n\n    def visit_Assign(self, node):\n        if len(node.targets) == 1 and isinstance(node.targets[0], ast.Name):\n            name = node.targets[0].id\n            if name in self.values and name not in self.seen:\n                self.seen.add(name)\n                node.value = ast.parse(repr(self.values[name]), mode='eval').body\n        return node\n\n\ndef execute(text, values):\n    tree = ast.fix_missing_locations(Inputs(values).visit(ast.parse(text)))\n    scope = {'__name__': '__main__'}\n    output = io.StringIO()\n    with contextlib.redirect_stdout(output):\n        exec(compile(tree, 'main.py', 'exec'), scope)\n    plt = sys.modules.get('matplotlib.pyplot')\n    if plt is not None:\n        plt.close('all')\n    return output.getvalue().rstrip('\\n'), scope\n\n\ndef same(actual, expected):\n    pd = sys.modules.get('pandas')\n    if pd is not None and isinstance(expected, (pd.DataFrame, pd.Series, pd.Index)):\n        if type(actual) is not type(expected):\n            return False\n        try:\n            if isinstance(expected, pd.DataFrame):\n                pd.testing.assert_frame_equal(actual, expected)\n            elif isinstance(expected, pd.Series):\n                pd.testing.assert_series_equal(actual, expected)\n            else:\n                pd.testing.assert_index_equal(actual, expected)\n            return True\n        except AssertionError:\n            return False\n    np = sys.modules.get('numpy')\n    if np is not None and isinstance(expected, np.ndarray):\n        # Model and scaler outputs: same shape, and values equal up to float rounding.\n        if not isinstance(actual, np.ndarray) or actual.shape != expected.shape:\n            return False\n        if expected.dtype.kind in 'fc':\n            return bool(np.allclose(actual, expected, rtol=1e-7, atol=1e-9, equal_nan=True))\n        return bool(np.array_equal(actual, expected))\n    if isinstance(expected, float) and isinstance(actual, (int, float)):\n        return math.isclose(actual, expected, rel_tol=1e-9, abs_tol=1e-12)\n    try:\n        return bool(actual == expected)\n    except Exception:\n        return False\n\n\ndef fail(message):\n    # The learner reads only this message, never the checker's own traceback.\n    print(message, file=sys.stderr)\n    sys.exit(1)\n\n\ndef snapshot(inputs):\n    # Files the run created or changed, such as a saved result CSV.\n    produced = {}\n    for path in Path('.').rglob('*'):\n        if path.is_file() and inputs.get(path.as_posix()) != path.read_bytes():\n            produced[path.as_posix()] = path.read_bytes()\n    return produced\n\n\ndef run_in_fresh_folder(files, text, values):\n    # Each run gets its own copy of the data, so files one run writes never help another.\n    home = os.getcwd()\n    folder = tempfile.mkdtemp(dir=home)\n    try:\n        os.chdir(folder)\n        inputs = {}\n        for path, content in files.items():\n            target = Path(path)\n            target.parent.mkdir(parents=True, exist_ok=True)\n            target.write_text(content, encoding='utf8')\n            inputs[target.as_posix()] = target.read_bytes()\n        output, scope = execute(text, values)\n        return output, scope, snapshot(inputs)\n    finally:\n        os.chdir(home)\n        shutil.rmtree(folder, ignore_errors=True)\n\n\ndef describe(case):\n    parts = [name + ' = ' + repr(value) for name, value in case.items() if name != 'files']\n    parts += [path + ' 내용' for path in case.get('files', {})]\n    return ', '.join(parts)\n\n\nMESSAGES = {'__figures__': '그래프의 종류·축 이름·값이 기준 그래프와 달라요. 바뀐 자료로도 같은 그래프를 그리세요.'}\nfor index, case in enumerate(cases):\n    values = {k: v for k, v in case.items() if k != 'files'}\n    files = {**base_files, **case.get('files', {})}\n    expected, wanted, made = run_in_fresh_folder(files, reference, values)\n    changed = '준비 값을 ' + describe(case) + '(으)로 바꾸면 '\n    try:\n        actual, scope, produced = run_in_fresh_folder(files, source, values)\n    except SystemExit:\n        fail('코드가 exit로 중간에 끝났어요. 끝까지 실행되게 하세요.')\n    except BaseException as error:\n        reason = ''.join(traceback.format_exception_only(type(error), error)).strip()\n        fail(('코드를 실행하면' if index == 0 else changed.rstrip()) + ' 오류가 나요.\\n' + reason)\n    if index == 0:\n        problem = '실행 결과가 기대와 달라요.'\n    else:\n        problem = changed + '결과가 달라요.\\n값이나 자료가 바뀌어도 맞는 방법인지 확인하세요.'\n    if actual != expected:\n        fail(problem + '\\n기대 출력:\\n' + expected[-600:] + '\\n실제 출력:\\n' + actual[-600:])\n    for name in names:\n        if name not in scope:\n            fail(name + '에 결과를 담아 주세요.')\n        if not same(scope[name], wanted[name]):\n            fail(problem + '\\n' + MESSAGES.get(name, name + '의 값이 기대와 달라요.'))\n    for path in sorted(made):\n        if path not in produced:\n            fail(problem + '\\n' + path + ' 파일을 저장하지 않았어요.')\n        if produced[path] != made[path]:\n            fail(problem + '\\n저장한 ' + path + ' 파일의 내용이 기대와 달라요.')\nprint('준비 값과 자료를 바꿔도 같은 원리로 계산했어요.')\n"
+    },
+    {
+      "id": "state-model",
+      "title": "상태 모델에 빠진 화살표",
+      "goal": "분석 모델은 요구를 그림으로 정리한 거예요. UML이 대표 표기법이에요.\n상태 다이어그램은 상태와, 사건에 따라 상태가 바뀌는 화살표를 그려요.\n모델에 없는 화살표는 시스템이 거부해요. 그래서 요구와 맞춰 봐야 해요.\n\n실행해서 어느 사건이 거부되는지 보세요.\n주석의 요구를 읽고, `model` 중괄호 안에 빠진 화살표 한 줄을 더하세요.\n배송 중인 주문은 여전히 취소되면 안 돼요. 채점은 다른 사건 순서로도 돌려 봐요.\n`events`를 `['결제', '배송', '취소']`로 바꿔 확인해도 돼요. 제출 전엔 되돌리세요.",
+      "language": "python",
+      "entry_file": "main.py",
+      "starter_code": "# 주문 상태 모델이에요. (지금 상태, 사건): 다음 상태로 적어요.\nmodel = {\n    ('결제 대기', '결제'): '결제 완료',\n    ('결제 대기', '취소'): '취소됨',\n    ('결제 완료', '배송'): '배송 중',\n    ('배송 중', '도착'): '배송 완료',\n}\n# 요구: 배송 전이면 결제 완료 주문도 취소할 수 있어야 해요.\nevents = ['결제', '취소']\n\n# 주문은 결제 대기에서 시작해요.\nstate = '결제 대기'\nfor event in events:\n    # 모델에 (상태, 사건) 화살표가 있을 때만 상태가 바뀌어요.\n    if (state, event) in model:\n        state = model[(state, event)]\n        print(f'{event} → {state}')\n    else:\n        # 화살표가 없으면 상태는 그대로예요.\n        print(f'{event} 거부: {state}에서 갈 화살표가 없어요')\nprint('마지막 상태:', state)\n",
+      "solution": "# 주문 상태 모델이에요. (지금 상태, 사건): 다음 상태로 적어요.\nmodel = {\n    ('결제 대기', '결제'): '결제 완료',\n    ('결제 대기', '취소'): '취소됨',\n    ('결제 완료', '배송'): '배송 중',\n    ('결제 완료', '취소'): '취소됨',\n    ('배송 중', '도착'): '배송 완료',\n}\n# 요구: 배송 전이면 결제 완료 주문도 취소할 수 있어야 해요.\nevents = ['결제', '취소']\n\n# 주문은 결제 대기에서 시작해요.\nstate = '결제 대기'\nfor event in events:\n    # 모델에 (상태, 사건) 화살표가 있을 때만 상태가 바뀌어요.\n    if (state, event) in model:\n        state = model[(state, event)]\n        print(f'{event} → {state}')\n    else:\n        # 화살표가 없으면 상태는 그대로예요.\n        print(f'{event} 거부: {state}에서 갈 화살표가 없어요')\nprint('마지막 상태:', state)\n",
+      "files": {},
+      "tests": [
+        {
+          "input": "",
+          "expected": "결제 → 결제 완료\n취소 → 취소됨\n마지막 상태: 취소됨"
+        }
+      ],
+      "web_checks": [],
+      "git_checks": null,
+      "required": true,
+      "hints": [
+        "요구를 `(지금 상태, 사건): 다음 상태` 꼴로 옮겨요. 취소 뒤 상태는 위 줄에 있어요."
+      ],
+      "narration": [
+        {
+          "action": "set_code",
+          "code": "# 주문 상태 모델이에요. (지금 상태, 사건): 다음 상태로 적어요.\nmodel = {\n    ('결제 대기', '결제'): '결제 완료',\n    ('결제 대기', '취소'): '취소됨',\n    ('결제 완료', '배송'): '배송 중',\n    ('배송 중', '도착'): '배송 완료',\n}\n# 요구: 배송 전이면 결제 완료 주문도 취소할 수 있어야 해요.\nevents = ['결제', '취소']\n\n# 주문은 결제 대기에서 시작해요.\nstate = '결제 대기'\nfor event in events:\n    # 모델에 (상태, 사건) 화살표가 있을 때만 상태가 바뀌어요.\n    if (state, event) in model:\n        state = model[(state, event)]\n        print(f'{event} → {state}')\n    else:\n        # 화살표가 없으면 상태는 그대로예요.\n        print(f'{event} 거부: {state}에서 갈 화살표가 없어요')\nprint('마지막 상태:', state)\n",
+          "say": "준비 코드를 먼저 실행해 볼게요."
+        },
+        {
+          "action": "run",
+          "expected_failure": false
+        },
+        {
+          "action": "say",
+          "target": "output",
+          "text": "실행 결과를 비교해요.  완료에서 갈 화살표가 없어요 / 마지막 상태: 결제 완료"
+        },
+        {
+          "action": "say",
+          "target": "editor",
+          "text": "조심하세요. 취소 화살표를 모든 상태에 달면 배송 중인 주문까지 취소돼요."
+        },
+        {
+          "action": "patch_code",
+          "before": "('결제 완료', '배송'): '배송 중',",
+          "after": "('결제 완료', '배송'): '배송 중',\n    ('결제 완료', '취소'): '취소됨',",
+          "say": "작은 부분을 바꿔 원리를 확인해요."
+        },
+        {
+          "action": "run"
+        },
+        {
+          "action": "say",
+          "target": "output",
+          "text": "실행 결과를 비교해요. → 결제 완료 / 취소 → 취소됨 / 마지막 상태: 취소됨"
+        },
+        {
+          "action": "submit"
+        }
+      ],
+      "checker": "import ast\nimport builtins\nimport contextlib\nimport io\nimport math\nimport os\nfrom pathlib import Path\nimport shutil\nimport sys\nimport tempfile\nimport traceback\nimport warnings\n\nos.environ['MPLBACKEND'] = 'Agg'\n# Grading output is for the verdict only; font and library warnings would bury the reason.\nwarnings.filterwarnings('ignore')\nbuiltins.display = lambda *args, **kwargs: None\nreference = \"# 주문 상태 모델이에요. (지금 상태, 사건): 다음 상태로 적어요.\\nmodel = {\\n    ('결제 대기', '결제'): '결제 완료',\\n    ('결제 대기', '취소'): '취소됨',\\n    ('결제 완료', '배송'): '배송 중',\\n    ('결제 완료', '취소'): '취소됨',\\n    ('배송 중', '도착'): '배송 완료',\\n}\\n# 요구: 배송 전이면 결제 완료 주문도 취소할 수 있어야 해요.\\nevents = ['결제', '취소']\\n\\n# 주문은 결제 대기에서 시작해요.\\nstate = '결제 대기'\\nfor event in events:\\n    # 모델에 (상태, 사건) 화살표가 있을 때만 상태가 바뀌어요.\\n    if (state, event) in model:\\n        state = model[(state, event)]\\n        print(f'{event} → {state}')\\n    else:\\n        # 화살표가 없으면 상태는 그대로예요.\\n        print(f'{event} 거부: {state}에서 갈 화살표가 없어요')\\nprint('마지막 상태:', state)\\n\"\ncases = [{}, {'events': ['결제', '배송', '취소']}, {'events': ['취소', '결제']}, {'events': ['결제', '취소', '배송']}]\nnames = []\nbase_files = {}\nsource = open(sys.argv[1], encoding='utf8').read()\n\n\nclass Inputs(ast.NodeTransformer):\n    # Replace only the first prepared assignment to each changed name.\n    def __init__(self, values):\n        self.values = values\n        self.seen = set()\n\n    def visit_Assign(self, node):\n        if len(node.targets) == 1 and isinstance(node.targets[0], ast.Name):\n            name = node.targets[0].id\n            if name in self.values and name not in self.seen:\n                self.seen.add(name)\n                node.value = ast.parse(repr(self.values[name]), mode='eval').body\n        return node\n\n\ndef execute(text, values):\n    tree = ast.fix_missing_locations(Inputs(values).visit(ast.parse(text)))\n    scope = {'__name__': '__main__'}\n    output = io.StringIO()\n    with contextlib.redirect_stdout(output):\n        exec(compile(tree, 'main.py', 'exec'), scope)\n    plt = sys.modules.get('matplotlib.pyplot')\n    if plt is not None:\n        plt.close('all')\n    return output.getvalue().rstrip('\\n'), scope\n\n\ndef same(actual, expected):\n    pd = sys.modules.get('pandas')\n    if pd is not None and isinstance(expected, (pd.DataFrame, pd.Series, pd.Index)):\n        if type(actual) is not type(expected):\n            return False\n        try:\n            if isinstance(expected, pd.DataFrame):\n                pd.testing.assert_frame_equal(actual, expected)\n            elif isinstance(expected, pd.Series):\n                pd.testing.assert_series_equal(actual, expected)\n            else:\n                pd.testing.assert_index_equal(actual, expected)\n            return True\n        except AssertionError:\n            return False\n    np = sys.modules.get('numpy')\n    if np is not None and isinstance(expected, np.ndarray):\n        # Model and scaler outputs: same shape, and values equal up to float rounding.\n        if not isinstance(actual, np.ndarray) or actual.shape != expected.shape:\n            return False\n        if expected.dtype.kind in 'fc':\n            return bool(np.allclose(actual, expected, rtol=1e-7, atol=1e-9, equal_nan=True))\n        return bool(np.array_equal(actual, expected))\n    if isinstance(expected, float) and isinstance(actual, (int, float)):\n        return math.isclose(actual, expected, rel_tol=1e-9, abs_tol=1e-12)\n    try:\n        return bool(actual == expected)\n    except Exception:\n        return False\n\n\ndef fail(message):\n    # The learner reads only this message, never the checker's own traceback.\n    print(message, file=sys.stderr)\n    sys.exit(1)\n\n\ndef snapshot(inputs):\n    # Files the run created or changed, such as a saved result CSV.\n    produced = {}\n    for path in Path('.').rglob('*'):\n        if path.is_file() and inputs.get(path.as_posix()) != path.read_bytes():\n            produced[path.as_posix()] = path.read_bytes()\n    return produced\n\n\ndef run_in_fresh_folder(files, text, values):\n    # Each run gets its own copy of the data, so files one run writes never help another.\n    home = os.getcwd()\n    folder = tempfile.mkdtemp(dir=home)\n    try:\n        os.chdir(folder)\n        inputs = {}\n        for path, content in files.items():\n            target = Path(path)\n            target.parent.mkdir(parents=True, exist_ok=True)\n            target.write_text(content, encoding='utf8')\n            inputs[target.as_posix()] = target.read_bytes()\n        output, scope = execute(text, values)\n        return output, scope, snapshot(inputs)\n    finally:\n        os.chdir(home)\n        shutil.rmtree(folder, ignore_errors=True)\n\n\ndef describe(case):\n    parts = [name + ' = ' + repr(value) for name, value in case.items() if name != 'files']\n    parts += [path + ' 내용' for path in case.get('files', {})]\n    return ', '.join(parts)\n\n\nMESSAGES = {'__figures__': '그래프의 종류·축 이름·값이 기준 그래프와 달라요. 바뀐 자료로도 같은 그래프를 그리세요.'}\nfor index, case in enumerate(cases):\n    values = {k: v for k, v in case.items() if k != 'files'}\n    files = {**base_files, **case.get('files', {})}\n    expected, wanted, made = run_in_fresh_folder(files, reference, values)\n    changed = '준비 값을 ' + describe(case) + '(으)로 바꾸면 '\n    try:\n        actual, scope, produced = run_in_fresh_folder(files, source, values)\n    except SystemExit:\n        fail('코드가 exit로 중간에 끝났어요. 끝까지 실행되게 하세요.')\n    except BaseException as error:\n        reason = ''.join(traceback.format_exception_only(type(error), error)).strip()\n        fail(('코드를 실행하면' if index == 0 else changed.rstrip()) + ' 오류가 나요.\\n' + reason)\n    if index == 0:\n        problem = '실행 결과가 기대와 달라요.'\n    else:\n        problem = changed + '결과가 달라요.\\n값이나 자료가 바뀌어도 맞는 방법인지 확인하세요.'\n    if actual != expected:\n        fail(problem + '\\n기대 출력:\\n' + expected[-600:] + '\\n실제 출력:\\n' + actual[-600:])\n    for name in names:\n        if name not in scope:\n            fail(name + '에 결과를 담아 주세요.')\n        if not same(scope[name], wanted[name]):\n            fail(problem + '\\n' + MESSAGES.get(name, name + '의 값이 기대와 달라요.'))\n    for path in sorted(made):\n        if path not in produced:\n            fail(problem + '\\n' + path + ' 파일을 저장하지 않았어요.')\n        if produced[path] != made[path]:\n            fail(problem + '\\n저장한 ' + path + ' 파일의 내용이 기대와 달라요.')\nprint('준비 값과 자료를 바꿔도 같은 원리로 계산했어요.')\n"
+    },
+    {
+      "id": "uml-names",
+      "title": "어떤 UML 다이어그램일까요?",
+      "goal": "UML(통합 모델링 언어)은 소프트웨어를 그리는 표준 표기법이에요.\n구조 다이어그램은 시스템이 무엇으로 이뤄졌는지 그려요.\n행위 다이어그램은 시스템이 어떻게 움직이는지 그려요.\n\n| 다이어그램 | 그리는 것 | 분류 |\n|---|---|---|\n| 클래스 | 클래스의 속성·연산과 클래스 사이 관계 | 구조 |\n| 유스케이스 | 액터(사용자·외부 시스템, 사람 모양)와 기능(타원)의 관계 | 행위 |\n| 시퀀스 | 객체가 주고받는 메시지의 시간 순서 | 행위 |\n| 상태 | 상태와 사건에 따른 상태 변화 | 행위 |\n| 활동 | 처리 순서와 갈림길의 흐름 | 행위 |\n\n보기: ㄱ. 클래스 ㄴ. 시퀀스 ㄷ. 유스케이스 ㄹ. 상태 ㅁ. 활동\n① 회원·사서를 사람 모양으로, 대출 기능을 타원으로 이었어요.\n② 로그인 때 화면·서버·DB가 주고받는 메시지를 시간 순서로 그렸어요.\n③ 보기 중 구조 다이어그램은 무엇이에요?\n보기에서 골라 한 줄에 기호 하나씩 적으세요.",
+      "language": "answer",
+      "entry_file": "answer.txt",
+      "starter_code": "① ?\n② ?\n③ ?\n",
+      "solution": "① ㄷ\n② ㄴ\n③ ㄱ\n",
+      "files": {},
+      "tests": [
+        {
+          "input": "",
+          "expected": "ㄷ\nㄴ\nㄱ"
+        },
+        {
+          "input": "1",
+          "expected": "ㄷ"
+        },
+        {
+          "input": "1",
+          "expected": "유스케이스"
+        },
+        {
+          "input": "1",
+          "expected": "유스케이스다이어그램"
+        },
+        {
+          "input": "1",
+          "expected": "유즈케이스"
+        },
+        {
+          "input": "1",
+          "expected": "유즈케이스다이어그램"
+        },
+        {
+          "input": "2",
+          "expected": "ㄴ"
+        },
+        {
+          "input": "2",
+          "expected": "시퀀스"
+        },
+        {
+          "input": "2",
+          "expected": "시퀀스다이어그램"
+        },
+        {
+          "input": "3",
+          "expected": "ㄱ"
+        },
+        {
+          "input": "3",
+          "expected": "클래스"
+        },
+        {
+          "input": "3",
+          "expected": "클래스다이어그램"
+        }
+      ],
+      "web_checks": [],
+      "git_checks": null,
+      "required": true,
+      "hints": [
+        "액터와 기능은 유스케이스, 메시지의 시간 순서는 시퀀스예요."
+      ],
+      "narration": [
+        {
+          "action": "set_code",
+          "code": "① ?\n② ?\n③ ?\n",
+          "say": "준비 코드를 먼저 실행해 볼게요."
+        },
+        {
+          "action": "run",
+          "expected_failure": false
+        },
+        {
+          "action": "say",
+          "target": "output",
+          "text": "실행 결과를 비교해요. ? / ? / ?"
+        },
+        {
+          "action": "say",
+          "target": "editor",
+          "text": "조심하세요. 유스케이스는 기능을 그리지만 구조가 아니라 행위 다이어그램이에요."
+        },
+        {
+          "action": "patch_code",
+          "before": "① ?\n② ?\n③ ?",
+          "after": "① ㄷ\n② ㄴ\n③ ㄱ",
+          "say": "작은 부분을 바꿔 원리를 확인해요."
+        },
+        {
+          "action": "run"
+        },
+        {
+          "action": "say",
+          "target": "output",
+          "text": "실행 결과를 비교해요. ㄷ / ㄴ / ㄱ"
+        },
+        {
+          "action": "submit"
+        }
+      ]
+    },
+    {
+      "id": "sprint-plan",
+      "title": "1순위는 언제 만들까요?",
+      "goal": "애자일(Agile)은 짧게 만들어 보이고 바뀐 요구에 맞춰 고쳐 가는 방식이에요.\n스크럼(Scrum)은 그런 애자일 방법이에요. 스프린트라는 주기를 반복해요.\n스프린트는 한 달 이하예요. 제품 백로그(Product Backlog)는 순서를 매긴 할 일 목록이고요.\n\n실행해서 1순위 회원 가입이 몇 번째 스프린트에 들어가는지 보세요.\n`sorted(목록)`은 작은 값부터 늘어놓은 새 목록을 줘요. 묶음은 첫 값인 순위부터 비교해요.\n이 실험은 차례로 담다가 크기가 넘치면 다음 스프린트로 넘겨요.\n순위대로 가져오게 `for` 줄의 `backlog`만 고치세요.",
+      "language": "python",
+      "entry_file": "main.py",
+      "starter_code": "# 제품 백로그예요. (순위, 할 일, 크기) 묶음으로 적어요.\nbacklog = [(3, '포인트 적립', 5), (2, '상품 검색', 4), (1, '회원 가입', 3), (4, '리뷰 쓰기', 2)]\n# 한 스프린트에 해낼 수 있는 크기예요.\ncapacity = 8\n\n# 지금 채우는 스프린트 번호, 담은 크기, 담은 일이에요.\nsprint = 1\nused = 0\nplan = []\n# 백로그의 묶음을 하나씩 꺼내 순위, 이름, 크기로 나눠 받아요.\nfor rank, name, size in backlog:\n    # 더 담으면 넘치니 이번 스프린트를 닫고 다음 스프린트를 열어요.\n    if used + size > capacity:\n        print(f'스프린트 {sprint}: {\", \".join(plan)}')\n        # 번호를 올리고 빈 스프린트로 다시 시작해요.\n        sprint += 1\n        used = 0\n        plan = []\n    # 이번 스프린트에서 할 일로 담아요.\n    plan.append(name)\n    used += size\n# 마지막 스프린트도 출력해요.\nprint(f'스프린트 {sprint}: {\", \".join(plan)}')\n",
+      "solution": "# 제품 백로그예요. (순위, 할 일, 크기) 묶음으로 적어요.\nbacklog = [(3, '포인트 적립', 5), (2, '상품 검색', 4), (1, '회원 가입', 3), (4, '리뷰 쓰기', 2)]\n# 한 스프린트에 해낼 수 있는 크기예요.\ncapacity = 8\n\n# 지금 채우는 스프린트 번호, 담은 크기, 담은 일이에요.\nsprint = 1\nused = 0\nplan = []\n# 백로그의 묶음을 하나씩 꺼내 순위, 이름, 크기로 나눠 받아요.\nfor rank, name, size in sorted(backlog):\n    # 더 담으면 넘치니 이번 스프린트를 닫고 다음 스프린트를 열어요.\n    if used + size > capacity:\n        print(f'스프린트 {sprint}: {\", \".join(plan)}')\n        # 번호를 올리고 빈 스프린트로 다시 시작해요.\n        sprint += 1\n        used = 0\n        plan = []\n    # 이번 스프린트에서 할 일로 담아요.\n    plan.append(name)\n    used += size\n# 마지막 스프린트도 출력해요.\nprint(f'스프린트 {sprint}: {\", \".join(plan)}')\n",
+      "files": {},
+      "tests": [
+        {
+          "input": "",
+          "expected": "스프린트 1: 회원 가입, 상품 검색\n스프린트 2: 포인트 적립, 리뷰 쓰기"
+        }
+      ],
+      "web_checks": [],
+      "git_checks": null,
+      "required": true,
+      "hints": [
+        "`for rank, name, size in sorted(backlog):`처럼 감싸요."
+      ],
+      "narration": [
+        {
+          "action": "set_code",
+          "code": "# 제품 백로그예요. (순위, 할 일, 크기) 묶음으로 적어요.\nbacklog = [(3, '포인트 적립', 5), (2, '상품 검색', 4), (1, '회원 가입', 3), (4, '리뷰 쓰기', 2)]\n# 한 스프린트에 해낼 수 있는 크기예요.\ncapacity = 8\n\n# 지금 채우는 스프린트 번호, 담은 크기, 담은 일이에요.\nsprint = 1\nused = 0\nplan = []\n# 백로그의 묶음을 하나씩 꺼내 순위, 이름, 크기로 나눠 받아요.\nfor rank, name, size in backlog:\n    # 더 담으면 넘치니 이번 스프린트를 닫고 다음 스프린트를 열어요.\n    if used + size > capacity:\n        print(f'스프린트 {sprint}: {\", \".join(plan)}')\n        # 번호를 올리고 빈 스프린트로 다시 시작해요.\n        sprint += 1\n        used = 0\n        plan = []\n    # 이번 스프린트에서 할 일로 담아요.\n    plan.append(name)\n    used += size\n# 마지막 스프린트도 출력해요.\nprint(f'스프린트 {sprint}: {\", \".join(plan)}')\n",
+          "say": "준비 코드를 먼저 실행해 볼게요."
+        },
+        {
+          "action": "run",
+          "expected_failure": false
+        },
+        {
+          "action": "say",
+          "target": "output",
+          "text": "실행 결과를 비교해요.  2: 상품 검색, 회원 가입 / 스프린트 3: 리뷰 쓰기"
+        },
+        {
+          "action": "say",
+          "target": "editor",
+          "text": "조심하세요. 적힌 순서대로 가져오면 1순위 일이 뒤 스프린트로 밀려요."
+        },
+        {
+          "action": "patch_code",
+          "before": "for rank, name, size in backlog:",
+          "after": "for rank, name, size in sorted(backlog):",
+          "say": "작은 부분을 바꿔 원리를 확인해요."
+        },
+        {
+          "action": "run"
+        },
+        {
+          "action": "say",
+          "target": "output",
+          "text": "실행 결과를 비교해요. 입, 상품 검색 / 스프린트 2: 포인트 적립, 리뷰 쓰기"
+        },
+        {
+          "action": "submit"
+        }
+      ],
+      "checker": "import ast\nimport builtins\nimport contextlib\nimport io\nimport math\nimport os\nfrom pathlib import Path\nimport shutil\nimport sys\nimport tempfile\nimport traceback\nimport warnings\n\nos.environ['MPLBACKEND'] = 'Agg'\n# Grading output is for the verdict only; font and library warnings would bury the reason.\nwarnings.filterwarnings('ignore')\nbuiltins.display = lambda *args, **kwargs: None\nreference = '# 제품 백로그예요. (순위, 할 일, 크기) 묶음으로 적어요.\\nbacklog = [(3, \\'포인트 적립\\', 5), (2, \\'상품 검색\\', 4), (1, \\'회원 가입\\', 3), (4, \\'리뷰 쓰기\\', 2)]\\n# 한 스프린트에 해낼 수 있는 크기예요.\\ncapacity = 8\\n\\n# 지금 채우는 스프린트 번호, 담은 크기, 담은 일이에요.\\nsprint = 1\\nused = 0\\nplan = []\\n# 백로그의 묶음을 하나씩 꺼내 순위, 이름, 크기로 나눠 받아요.\\nfor rank, name, size in sorted(backlog):\\n    # 더 담으면 넘치니 이번 스프린트를 닫고 다음 스프린트를 열어요.\\n    if used + size > capacity:\\n        print(f\\'스프린트 {sprint}: {\", \".join(plan)}\\')\\n        # 번호를 올리고 빈 스프린트로 다시 시작해요.\\n        sprint += 1\\n        used = 0\\n        plan = []\\n    # 이번 스프린트에서 할 일로 담아요.\\n    plan.append(name)\\n    used += size\\n# 마지막 스프린트도 출력해요.\\nprint(f\\'스프린트 {sprint}: {\", \".join(plan)}\\')\\n'\ncases = [{}, {'capacity': 5}, {'backlog': [(2, '장바구니', 3), (5, '쿠폰', 2), (1, '로그인', 2), (3, '결제', 4), (4, '배송 조회', 3)]}, {'capacity': 10, 'backlog': [(4, '알림', 4), (2, '찜하기', 3), (3, '문의하기', 6), (1, '주문 조회', 5)]}]\nnames = []\nbase_files = {}\nsource = open(sys.argv[1], encoding='utf8').read()\n\n\nclass Inputs(ast.NodeTransformer):\n    # Replace only the first prepared assignment to each changed name.\n    def __init__(self, values):\n        self.values = values\n        self.seen = set()\n\n    def visit_Assign(self, node):\n        if len(node.targets) == 1 and isinstance(node.targets[0], ast.Name):\n            name = node.targets[0].id\n            if name in self.values and name not in self.seen:\n                self.seen.add(name)\n                node.value = ast.parse(repr(self.values[name]), mode='eval').body\n        return node\n\n\ndef execute(text, values):\n    tree = ast.fix_missing_locations(Inputs(values).visit(ast.parse(text)))\n    scope = {'__name__': '__main__'}\n    output = io.StringIO()\n    with contextlib.redirect_stdout(output):\n        exec(compile(tree, 'main.py', 'exec'), scope)\n    plt = sys.modules.get('matplotlib.pyplot')\n    if plt is not None:\n        plt.close('all')\n    return output.getvalue().rstrip('\\n'), scope\n\n\ndef same(actual, expected):\n    pd = sys.modules.get('pandas')\n    if pd is not None and isinstance(expected, (pd.DataFrame, pd.Series, pd.Index)):\n        if type(actual) is not type(expected):\n            return False\n        try:\n            if isinstance(expected, pd.DataFrame):\n                pd.testing.assert_frame_equal(actual, expected)\n            elif isinstance(expected, pd.Series):\n                pd.testing.assert_series_equal(actual, expected)\n            else:\n                pd.testing.assert_index_equal(actual, expected)\n            return True\n        except AssertionError:\n            return False\n    np = sys.modules.get('numpy')\n    if np is not None and isinstance(expected, np.ndarray):\n        # Model and scaler outputs: same shape, and values equal up to float rounding.\n        if not isinstance(actual, np.ndarray) or actual.shape != expected.shape:\n            return False\n        if expected.dtype.kind in 'fc':\n            return bool(np.allclose(actual, expected, rtol=1e-7, atol=1e-9, equal_nan=True))\n        return bool(np.array_equal(actual, expected))\n    if isinstance(expected, float) and isinstance(actual, (int, float)):\n        return math.isclose(actual, expected, rel_tol=1e-9, abs_tol=1e-12)\n    try:\n        return bool(actual == expected)\n    except Exception:\n        return False\n\n\ndef fail(message):\n    # The learner reads only this message, never the checker's own traceback.\n    print(message, file=sys.stderr)\n    sys.exit(1)\n\n\ndef snapshot(inputs):\n    # Files the run created or changed, such as a saved result CSV.\n    produced = {}\n    for path in Path('.').rglob('*'):\n        if path.is_file() and inputs.get(path.as_posix()) != path.read_bytes():\n            produced[path.as_posix()] = path.read_bytes()\n    return produced\n\n\ndef run_in_fresh_folder(files, text, values):\n    # Each run gets its own copy of the data, so files one run writes never help another.\n    home = os.getcwd()\n    folder = tempfile.mkdtemp(dir=home)\n    try:\n        os.chdir(folder)\n        inputs = {}\n        for path, content in files.items():\n            target = Path(path)\n            target.parent.mkdir(parents=True, exist_ok=True)\n            target.write_text(content, encoding='utf8')\n            inputs[target.as_posix()] = target.read_bytes()\n        output, scope = execute(text, values)\n        return output, scope, snapshot(inputs)\n    finally:\n        os.chdir(home)\n        shutil.rmtree(folder, ignore_errors=True)\n\n\ndef describe(case):\n    parts = [name + ' = ' + repr(value) for name, value in case.items() if name != 'files']\n    parts += [path + ' 내용' for path in case.get('files', {})]\n    return ', '.join(parts)\n\n\nMESSAGES = {'__figures__': '그래프의 종류·축 이름·값이 기준 그래프와 달라요. 바뀐 자료로도 같은 그래프를 그리세요.'}\nfor index, case in enumerate(cases):\n    values = {k: v for k, v in case.items() if k != 'files'}\n    files = {**base_files, **case.get('files', {})}\n    expected, wanted, made = run_in_fresh_folder(files, reference, values)\n    changed = '준비 값을 ' + describe(case) + '(으)로 바꾸면 '\n    try:\n        actual, scope, produced = run_in_fresh_folder(files, source, values)\n    except SystemExit:\n        fail('코드가 exit로 중간에 끝났어요. 끝까지 실행되게 하세요.')\n    except BaseException as error:\n        reason = ''.join(traceback.format_exception_only(type(error), error)).strip()\n        fail(('코드를 실행하면' if index == 0 else changed.rstrip()) + ' 오류가 나요.\\n' + reason)\n    if index == 0:\n        problem = '실행 결과가 기대와 달라요.'\n    else:\n        problem = changed + '결과가 달라요.\\n값이나 자료가 바뀌어도 맞는 방법인지 확인하세요.'\n    if actual != expected:\n        fail(problem + '\\n기대 출력:\\n' + expected[-600:] + '\\n실제 출력:\\n' + actual[-600:])\n    for name in names:\n        if name not in scope:\n            fail(name + '에 결과를 담아 주세요.')\n        if not same(scope[name], wanted[name]):\n            fail(problem + '\\n' + MESSAGES.get(name, name + '의 값이 기대와 달라요.'))\n    for path in sorted(made):\n        if path not in produced:\n            fail(problem + '\\n' + path + ' 파일을 저장하지 않았어요.')\n        if produced[path] != made[path]:\n            fail(problem + '\\n저장한 ' + path + ' 파일의 내용이 기대와 달라요.')\nprint('준비 값과 자료를 바꿔도 같은 원리로 계산했어요.')\n"
+    },
+    {
+      "id": "method-names",
+      "title": "어떤 방법론일까요?",
+      "goal": "개발 방법론은 소프트웨어를 만드는 순서와 방식이에요.\n\n| 이름 | 특징 |\n|---|---|\n| 폭포수 모델 | 분석→설계→구현→테스트를 차례로 한 번씩 거쳐요. 앞 단계가 끝나야 다음으로 가요 |\n| 프로토타입 모델 | 시제품을 먼저 보여 주고 고객 의견으로 요구를 다듬어요 |\n| 나선형 모델 | 여러 번 반복하며 만들어요. 반복마다 위험을 분석해 줄여요 |\n| 스크럼 | 한 달 이하의 스프린트를 반복해요. 매일 15분 데일리 스크럼으로 진행을 맞추고, 스프린트 끝에 회고로 일하는 방식을 돌아봐요 |\n| XP(익스트림 프로그래밍) | 짝 프로그래밍, 테스트 먼저 쓰기, 지속적 통합 같은 실천법을 써요 |\n\n보기: ㄱ. 짝 프로그래밍 ㄴ. 폭포수 모델 ㄷ. 데일리 스크럼\nㄹ. 나선형 모델 ㅁ. 스프린트 회고 ㅂ. 프로토타입 모델\n① 요구가 처음부터 분명해요. 단계를 하나씩 끝내며 가기로 했어요.\n② 처음 써 보는 기술이라 실패 위험이 커요. 반복마다 위험부터 따져요.\n③ 두 개발자가 한 컴퓨터 앞에서 한 명은 치고 한 명은 검토해요.\n④ 개발자들이 매일 15분 동안 진행 상황을 맞춰요.\n보기에서 골라 한 줄에 기호 하나씩 적으세요.",
+      "language": "answer",
+      "entry_file": "answer.txt",
+      "starter_code": "① ?\n② ?\n③ ?\n④ ?\n",
+      "solution": "① ㄴ\n② ㄹ\n③ ㄱ\n④ ㄷ\n",
+      "files": {},
+      "tests": [
+        {
+          "input": "",
+          "expected": "ㄴ\nㄹ\nㄱ\nㄷ"
+        },
+        {
+          "input": "1",
+          "expected": "ㄴ"
+        },
+        {
+          "input": "1",
+          "expected": "폭포수"
+        },
+        {
+          "input": "1",
+          "expected": "폭포수모델"
+        },
+        {
+          "input": "2",
+          "expected": "ㄹ"
+        },
+        {
+          "input": "2",
+          "expected": "나선형"
+        },
+        {
+          "input": "2",
+          "expected": "나선형모델"
+        },
+        {
+          "input": "3",
+          "expected": "ㄱ"
+        },
+        {
+          "input": "3",
+          "expected": "짝프로그래밍"
+        },
+        {
+          "input": "3",
+          "expected": "페어프로그래밍"
+        },
+        {
+          "input": "4",
+          "expected": "ㄷ"
+        },
+        {
+          "input": "4",
+          "expected": "데일리스크럼"
+        }
+      ],
+      "web_checks": [],
+      "git_checks": null,
+      "required": true,
+      "hints": [
+        "나선형을 알아보는 열쇠는 반복마다 하는 위험 분석이에요."
+      ],
+      "narration": [
+        {
+          "action": "set_code",
+          "code": "① ?\n② ?\n③ ?\n④ ?\n",
+          "say": "준비 코드를 먼저 실행해 볼게요."
+        },
+        {
+          "action": "run",
+          "expected_failure": false
+        },
+        {
+          "action": "say",
+          "target": "output",
+          "text": "실행 결과를 비교해요. ? / ? / ? / ?"
+        },
+        {
+          "action": "say",
+          "target": "editor",
+          "text": "조심하세요. 반복한다는 것만 보고 고르면 나선형과 스크럼을 헷갈려요."
+        },
+        {
+          "action": "patch_code",
+          "before": "① ?\n② ?\n③ ?\n④ ?",
+          "after": "① ㄴ\n② ㄹ\n③ ㄱ\n④ ㄷ",
+          "say": "작은 부분을 바꿔 원리를 확인해요."
+        },
+        {
+          "action": "run"
+        },
+        {
+          "action": "say",
+          "target": "output",
+          "text": "실행 결과를 비교해요. ㄴ / ㄹ / ㄱ / ㄷ"
+        },
+        {
+          "action": "submit"
+        }
+      ]
+    },
+    {
+      "id": "verify-gap",
+      "title": "도전 · 검증할 수 없는 요구",
+      "goal": "앞에서 배운 기능·비기능, 숫자 기준, 추적표를 함께 써요.\n기능 요구는 테스트가 있으면 검증할 수 있어요.\n비기능 요구는 테스트에 더해 숫자 기준도 있어야 해요.\n\n준비 코드는 테스트가 없는 요구만 찾아요.\n숫자 기준이 없는 비기능 요구도 함께 찾게 고치세요.\n파이썬은 그리고·또는을 `and`, `or`로 써요. 둘을 섞을 땐 괄호로 묶어 먼저 볼 쪽을 정해요.",
+      "language": "python",
+      "entry_file": "main.py",
+      "starter_code": "# 요구 번호: (종류, 숫자 기준)이에요. 기준이 없으면 빈 글자 ''예요.\nreqs = {\n    'REQ-1': ('기능', ''),\n    'REQ-2': ('비기능', '응답 2초 이내'),\n    'REQ-3': ('비기능', ''),\n    'REQ-4': ('기능', ''),\n}\n# 추적표예요. 테스트마다 확인하는 요구를 적어요.\ntrace = {'TC-01': 'REQ-1', 'TC-02': 'REQ-2', 'TC-03': 'REQ-3'}\n\n# 테스트가 가리키는 요구를 모아요.\ncovered = set(trace.values())\nfor rid in reqs:\n    # 종류는 kind에, 숫자 기준은 limit에 꺼내요.\n    kind, limit = reqs[rid]\n    # 검증할 수 없는 요구를 골라 출력해요.\n    if rid not in covered:\n        print(f'{rid}({kind}): 검증할 수 없어요')\nprint(f'요구 {len(reqs)}개 검사 끝')\n",
+      "solution": "# 요구 번호: (종류, 숫자 기준)이에요. 기준이 없으면 빈 글자 ''예요.\nreqs = {\n    'REQ-1': ('기능', ''),\n    'REQ-2': ('비기능', '응답 2초 이내'),\n    'REQ-3': ('비기능', ''),\n    'REQ-4': ('기능', ''),\n}\n# 추적표예요. 테스트마다 확인하는 요구를 적어요.\ntrace = {'TC-01': 'REQ-1', 'TC-02': 'REQ-2', 'TC-03': 'REQ-3'}\n\n# 테스트가 가리키는 요구를 모아요.\ncovered = set(trace.values())\nfor rid in reqs:\n    # 종류는 kind에, 숫자 기준은 limit에 꺼내요.\n    kind, limit = reqs[rid]\n    # 검증할 수 없는 요구를 골라 출력해요.\n    if rid not in covered or (kind == '비기능' and limit == ''):\n        print(f'{rid}({kind}): 검증할 수 없어요')\nprint(f'요구 {len(reqs)}개 검사 끝')\n",
+      "files": {},
+      "tests": [
+        {
+          "input": "",
+          "expected": "REQ-3(비기능): 검증할 수 없어요\nREQ-4(기능): 검증할 수 없어요\n요구 4개 검사 끝"
+        }
+      ],
+      "web_checks": [],
+      "git_checks": null,
+      "required": false,
+      "hints": [
+        "두 경우 중 하나만 맞아도 검증할 수 없어요. `or`로 이어요.",
+        "빈 기준은 `limit == ''`로 물어요. `kind == '비기능'`일 때만 `and`로 함께 봐요."
+      ],
+      "narration": [
+        {
+          "action": "set_code",
+          "code": "# 요구 번호: (종류, 숫자 기준)이에요. 기준이 없으면 빈 글자 ''예요.\nreqs = {\n    'REQ-1': ('기능', ''),\n    'REQ-2': ('비기능', '응답 2초 이내'),\n    'REQ-3': ('비기능', ''),\n    'REQ-4': ('기능', ''),\n}\n# 추적표예요. 테스트마다 확인하는 요구를 적어요.\ntrace = {'TC-01': 'REQ-1', 'TC-02': 'REQ-2', 'TC-03': 'REQ-3'}\n\n# 테스트가 가리키는 요구를 모아요.\ncovered = set(trace.values())\nfor rid in reqs:\n    # 종류는 kind에, 숫자 기준은 limit에 꺼내요.\n    kind, limit = reqs[rid]\n    # 검증할 수 없는 요구를 골라 출력해요.\n    if rid not in covered:\n        print(f'{rid}({kind}): 검증할 수 없어요')\nprint(f'요구 {len(reqs)}개 검사 끝')\n",
+          "say": "준비 코드를 먼저 실행해 볼게요."
+        },
+        {
+          "action": "run",
+          "expected_failure": false
+        },
+        {
+          "action": "say",
+          "target": "output",
+          "text": "실행 결과를 비교해요. EQ-4(기능): 검증할 수 없어요 / 요구 4개 검사 끝"
+        },
+        {
+          "action": "say",
+          "target": "editor",
+          "text": "조심하세요. 기준 검사를 모든 요구에 하면 테스트가 있는 기능 요구까지 걸려요."
+        },
+        {
+          "action": "patch_code",
+          "before": "if rid not in covered:",
+          "after": "if rid not in covered or (kind == '비기능' and limit == ''):",
+          "say": "작은 부분을 바꿔 원리를 확인해요."
+        },
+        {
+          "action": "run"
+        },
+        {
+          "action": "say",
+          "target": "output",
+          "text": "실행 결과를 비교해요. EQ-4(기능): 검증할 수 없어요 / 요구 4개 검사 끝"
+        },
+        {
+          "action": "submit"
+        }
+      ],
+      "checker": "import ast\nimport builtins\nimport contextlib\nimport io\nimport math\nimport os\nfrom pathlib import Path\nimport shutil\nimport sys\nimport tempfile\nimport traceback\nimport warnings\n\nos.environ['MPLBACKEND'] = 'Agg'\n# Grading output is for the verdict only; font and library warnings would bury the reason.\nwarnings.filterwarnings('ignore')\nbuiltins.display = lambda *args, **kwargs: None\nreference = \"# 요구 번호: (종류, 숫자 기준)이에요. 기준이 없으면 빈 글자 ''예요.\\nreqs = {\\n    'REQ-1': ('기능', ''),\\n    'REQ-2': ('비기능', '응답 2초 이내'),\\n    'REQ-3': ('비기능', ''),\\n    'REQ-4': ('기능', ''),\\n}\\n# 추적표예요. 테스트마다 확인하는 요구를 적어요.\\ntrace = {'TC-01': 'REQ-1', 'TC-02': 'REQ-2', 'TC-03': 'REQ-3'}\\n\\n# 테스트가 가리키는 요구를 모아요.\\ncovered = set(trace.values())\\nfor rid in reqs:\\n    # 종류는 kind에, 숫자 기준은 limit에 꺼내요.\\n    kind, limit = reqs[rid]\\n    # 검증할 수 없는 요구를 골라 출력해요.\\n    if rid not in covered or (kind == '비기능' and limit == ''):\\n        print(f'{rid}({kind}): 검증할 수 없어요')\\nprint(f'요구 {len(reqs)}개 검사 끝')\\n\"\ncases = [{}, {'trace': {'TC-01': 'REQ-2', 'TC-02': 'REQ-4'}}, {'trace': {'TC-01': 'REQ-1', 'TC-02': 'REQ-4'}}, {'reqs': {'REQ-1': ('비기능', '가동률 99.9% 이상'), 'REQ-2': ('비기능', ''), 'REQ-3': ('기능', ''), 'REQ-5': ('기능', '')}, 'trace': {'TC-01': 'REQ-1', 'TC-02': 'REQ-2', 'TC-03': 'REQ-3'}}]\nnames = []\nbase_files = {}\nsource = open(sys.argv[1], encoding='utf8').read()\n\n\nclass Inputs(ast.NodeTransformer):\n    # Replace only the first prepared assignment to each changed name.\n    def __init__(self, values):\n        self.values = values\n        self.seen = set()\n\n    def visit_Assign(self, node):\n        if len(node.targets) == 1 and isinstance(node.targets[0], ast.Name):\n            name = node.targets[0].id\n            if name in self.values and name not in self.seen:\n                self.seen.add(name)\n                node.value = ast.parse(repr(self.values[name]), mode='eval').body\n        return node\n\n\ndef execute(text, values):\n    tree = ast.fix_missing_locations(Inputs(values).visit(ast.parse(text)))\n    scope = {'__name__': '__main__'}\n    output = io.StringIO()\n    with contextlib.redirect_stdout(output):\n        exec(compile(tree, 'main.py', 'exec'), scope)\n    plt = sys.modules.get('matplotlib.pyplot')\n    if plt is not None:\n        plt.close('all')\n    return output.getvalue().rstrip('\\n'), scope\n\n\ndef same(actual, expected):\n    pd = sys.modules.get('pandas')\n    if pd is not None and isinstance(expected, (pd.DataFrame, pd.Series, pd.Index)):\n        if type(actual) is not type(expected):\n            return False\n        try:\n            if isinstance(expected, pd.DataFrame):\n                pd.testing.assert_frame_equal(actual, expected)\n            elif isinstance(expected, pd.Series):\n                pd.testing.assert_series_equal(actual, expected)\n            else:\n                pd.testing.assert_index_equal(actual, expected)\n            return True\n        except AssertionError:\n            return False\n    np = sys.modules.get('numpy')\n    if np is not None and isinstance(expected, np.ndarray):\n        # Model and scaler outputs: same shape, and values equal up to float rounding.\n        if not isinstance(actual, np.ndarray) or actual.shape != expected.shape:\n            return False\n        if expected.dtype.kind in 'fc':\n            return bool(np.allclose(actual, expected, rtol=1e-7, atol=1e-9, equal_nan=True))\n        return bool(np.array_equal(actual, expected))\n    if isinstance(expected, float) and isinstance(actual, (int, float)):\n        return math.isclose(actual, expected, rel_tol=1e-9, abs_tol=1e-12)\n    try:\n        return bool(actual == expected)\n    except Exception:\n        return False\n\n\ndef fail(message):\n    # The learner reads only this message, never the checker's own traceback.\n    print(message, file=sys.stderr)\n    sys.exit(1)\n\n\ndef snapshot(inputs):\n    # Files the run created or changed, such as a saved result CSV.\n    produced = {}\n    for path in Path('.').rglob('*'):\n        if path.is_file() and inputs.get(path.as_posix()) != path.read_bytes():\n            produced[path.as_posix()] = path.read_bytes()\n    return produced\n\n\ndef run_in_fresh_folder(files, text, values):\n    # Each run gets its own copy of the data, so files one run writes never help another.\n    home = os.getcwd()\n    folder = tempfile.mkdtemp(dir=home)\n    try:\n        os.chdir(folder)\n        inputs = {}\n        for path, content in files.items():\n            target = Path(path)\n            target.parent.mkdir(parents=True, exist_ok=True)\n            target.write_text(content, encoding='utf8')\n            inputs[target.as_posix()] = target.read_bytes()\n        output, scope = execute(text, values)\n        return output, scope, snapshot(inputs)\n    finally:\n        os.chdir(home)\n        shutil.rmtree(folder, ignore_errors=True)\n\n\ndef describe(case):\n    parts = [name + ' = ' + repr(value) for name, value in case.items() if name != 'files']\n    parts += [path + ' 내용' for path in case.get('files', {})]\n    return ', '.join(parts)\n\n\nMESSAGES = {'__figures__': '그래프의 종류·축 이름·값이 기준 그래프와 달라요. 바뀐 자료로도 같은 그래프를 그리세요.'}\nfor index, case in enumerate(cases):\n    values = {k: v for k, v in case.items() if k != 'files'}\n    files = {**base_files, **case.get('files', {})}\n    expected, wanted, made = run_in_fresh_folder(files, reference, values)\n    changed = '준비 값을 ' + describe(case) + '(으)로 바꾸면 '\n    try:\n        actual, scope, produced = run_in_fresh_folder(files, source, values)\n    except SystemExit:\n        fail('코드가 exit로 중간에 끝났어요. 끝까지 실행되게 하세요.')\n    except BaseException as error:\n        reason = ''.join(traceback.format_exception_only(type(error), error)).strip()\n        fail(('코드를 실행하면' if index == 0 else changed.rstrip()) + ' 오류가 나요.\\n' + reason)\n    if index == 0:\n        problem = '실행 결과가 기대와 달라요.'\n    else:\n        problem = changed + '결과가 달라요.\\n값이나 자료가 바뀌어도 맞는 방법인지 확인하세요.'\n    if actual != expected:\n        fail(problem + '\\n기대 출력:\\n' + expected[-600:] + '\\n실제 출력:\\n' + actual[-600:])\n    for name in names:\n        if name not in scope:\n            fail(name + '에 결과를 담아 주세요.')\n        if not same(scope[name], wanted[name]):\n            fail(problem + '\\n' + MESSAGES.get(name, name + '의 값이 기대와 달라요.'))\n    for path in sorted(made):\n        if path not in produced:\n            fail(problem + '\\n' + path + ' 파일을 저장하지 않았어요.')\n        if produced[path] != made[path]:\n            fail(problem + '\\n저장한 ' + path + ' 파일의 내용이 기대와 달라요.')\nprint('준비 값과 자료를 바꿔도 같은 원리로 계산했어요.')\n"
+    },
+    {
+      "id": "case-blanks",
+      "title": "도전 · 도서관 앱 팀의 하루",
+      "goal": "요구공학 단계, 기능·비기능, UML 다이어그램을 함께 써요.\n사례의 장면마다 알맞은 이름을 붙여 보세요.\n\n도서관 앱 팀이 사서들을 인터뷰해 요구를 모았어요.\n\"대출 기록 5년 보관\"과 \"개인정보 1년 뒤 삭제\"가 부딪쳤어요.\n팀은 사서와 의논해 두 요구의 우선순위를 정했어요.\n\"처음 온 회원도 3분 안에 대출을 마쳐야 해요\"라는 요구도 있었어요.\n오후에는 책 한 권이 대출 가능·대출 중·연체로 바뀌는 그림을 그렸어요.\n화살표에는 대출·반납 같은 사건을 적었고요.\n\n① 우선순위를 정한 일은 요구공학의 어느 단계예요?\n② 3분 요구는 기능과 비기능 중 무엇이에요?\n③ 오후에 그린 UML 다이어그램 이름은요?\n한 줄에 하나씩, 한두 단어로 적으세요.",
+      "language": "answer",
+      "entry_file": "answer.txt",
+      "starter_code": "① ?\n② ?\n③ ?\n",
+      "solution": "① 분석\n② 비기능\n③ 상태\n",
+      "files": {},
+      "tests": [
+        {
+          "input": "",
+          "expected": "분석\n비기능\n상태"
+        },
+        {
+          "input": "1",
+          "expected": "분석"
+        },
+        {
+          "input": "1",
+          "expected": "분석단계"
+        },
+        {
+          "input": "1",
+          "expected": "요구분석"
+        },
+        {
+          "input": "1",
+          "expected": "요구분석단계"
+        },
+        {
+          "input": "1",
+          "expected": "요구사항분석"
+        },
+        {
+          "input": "1",
+          "expected": "요구사항분석단계"
+        },
+        {
+          "input": "1",
+          "expected": "analysis"
+        },
+        {
+          "input": "1",
+          "expected": "분석(analysis)"
+        },
+        {
+          "input": "1",
+          "expected": "분석 (analysis)"
+        },
+        {
+          "input": "2",
+          "expected": "비기능"
+        },
+        {
+          "input": "2",
+          "expected": "비기능요구"
+        },
+        {
+          "input": "2",
+          "expected": "비기능요구사항"
+        },
+        {
+          "input": "2",
+          "expected": "비기능적"
+        },
+        {
+          "input": "2",
+          "expected": "비기능적요구"
+        },
+        {
+          "input": "2",
+          "expected": "비기능적요구사항"
+        },
+        {
+          "input": "2",
+          "expected": "non-functional"
+        },
+        {
+          "input": "2",
+          "expected": "non-functional requirement"
+        },
+        {
+          "input": "3",
+          "expected": "상태"
+        },
+        {
+          "input": "3",
+          "expected": "상태머신"
+        },
+        {
+          "input": "3",
+          "expected": "상태다이어그램"
+        },
+        {
+          "input": "3",
+          "expected": "상태머신다이어그램"
+        },
+        {
+          "input": "3",
+          "expected": "상태도"
+        },
+        {
+          "input": "3",
+          "expected": "state machine diagram"
+        },
+        {
+          "input": "3",
+          "expected": "state machine"
+        },
+        {
+          "input": "3",
+          "expected": "state diagram"
+        }
+      ],
+      "web_checks": [],
+      "git_checks": null,
+      "required": false,
+      "hints": [
+        "① 요구를 모은 뒤, 문서로 적기 전에 하는 일이에요.",
+        "③ 화살표에 사건을 적고 상태가 바뀌는 그림은 상태 다이어그램이에요."
+      ],
+      "narration": [
+        {
+          "action": "set_code",
+          "code": "① ?\n② ?\n③ ?\n",
+          "say": "준비 코드를 먼저 실행해 볼게요."
+        },
+        {
+          "action": "run",
+          "expected_failure": false
+        },
+        {
+          "action": "say",
+          "target": "output",
+          "text": "실행 결과를 비교해요. ? / ? / ?"
+        },
+        {
+          "action": "say",
+          "target": "editor",
+          "text": "조심하세요. 인터뷰 장면만 보고 도출로 적으면 의논해 정리한 분석을 놓쳐요."
+        },
+        {
+          "action": "patch_code",
+          "before": "① ?\n② ?\n③ ?",
+          "after": "① 분석\n② 비기능\n③ 상태",
+          "say": "작은 부분을 바꿔 원리를 확인해요."
+        },
+        {
+          "action": "run"
+        },
+        {
+          "action": "say",
+          "target": "output",
+          "text": "실행 결과를 비교해요. 분석 / 비기능 / 상태"
+        },
+        {
+          "action": "submit"
+        }
+      ]
+    }
+  ]
+}
